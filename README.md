@@ -2,10 +2,6 @@
 
 Sonatype Nexus Repository Manager 3, image is based on the Alpine base image with 0 vulnerabilities.
 
-[![Docker Build Status](https://img.shields.io/docker/build/secureimages/nexus3.svg?style=flat-square)]()
-[![Docker Pulls](https://img.shields.io/docker/pulls/secureimages/nexus3.svg?style=flat-square)]()
-[![Docker Stars](https://img.shields.io/docker/stars/secureimages/nexus3.svg?style=flat-square)]()
-
 ## Current Docker image
 
 Security scanning using Clair
