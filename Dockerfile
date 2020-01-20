@@ -1,4 +1,4 @@
-FROM alpine:3.11.2
+FROM alpine:3.11.3
 LABEL website="Secure Docker Images https://secureimages.dev"
 LABEL description="We secure your business from scratch."
 LABEL maintainer="hireus@secureimages.dev"
@@ -21,9 +21,6 @@ ENV JAVA_HOME=/usr/lib/jvm/java-1.8-openjdk \
     JAVA_TOOL_OPTIONS="-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap" \
     GLIBC_REPO=https://github.com/sgerrand/alpine-pkg-glibc \
     GLIBC_VERSION=2.30-r0
-
-# Fixing CVE-xxxx-xxxx
-RUN apk add --no-cache --upgrade openssl
 
 RUN set -ex ;\
     apk add libstdc++ curl ca-certificates bash ;\
