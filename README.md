@@ -6,24 +6,24 @@ Sonatype Nexus Repository Manager 3, image is based on the Alpine base image wit
 
 Security scanning using Clair
 ```
-clair-scanner secureimages/nexus3:3.21.2-alpine-3.11.5
-2020/03/24 18:16:45 [INFO] ▶ Start clair-scanner
-2020/03/24 18:16:48 [INFO] ▶ Server listening on port 9279
-2020/03/24 18:16:48 [INFO] ▶ Analyzing dac63304c60354902922613d675ec533c6e10879f72d49b7602575ae5d5f9257
-2020/03/24 18:16:48 [INFO] ▶ Analyzing d75820de193c0a1f1df5dd4b78fe2ffe998fe33aa8acbf2db663f60380a3c3f8
-2020/03/24 18:16:48 [INFO] ▶ Analyzing 5e2799e5705d1dad36ede8b07541863d42d010071edc10aa7647baeb4610cf1c
-2020/03/24 18:16:48 [INFO] ▶ Image [secureimages/nexus3:3.21.2-alpine-3.11.5] contains NO unapproved vulnerabilities
+clair-scanner secureimages/nexus3:3.22.0-alpine-3.11.5
+2020/03/28 15:47:38 [INFO] ▶ Start clair-scanner
+2020/03/28 15:47:40 [INFO] ▶ Server listening on port 9279
+2020/03/28 15:47:40 [INFO] ▶ Analyzing dac63304c60354902922613d675ec533c6e10879f72d49b7602575ae5d5f9257
+2020/03/28 15:47:40 [INFO] ▶ Analyzing edd39623786e8f6845e7dac684f1687c218f9b88b0329c48111921928e6ea3bf
+2020/03/28 15:47:41 [INFO] ▶ Analyzing 747fea2a8d1807115a600842724afe558db3dd650211e2d4bf330178ac3f3adc
+2020/03/28 15:47:41 [INFO] ▶ Image [secureimages/nexus3:3.22.0-alpine-3.11.5] contains NO unapproved vulnerabilities
 ```
 
 Security scanning using Trivy
 ```
-docker run --rm -v /var/run/docker.sock:/var/run/docker.sock:ro aquasec/trivy:0.5.3 --no-progress secureimages/nexus3:3.21.2-alpine-3.11.5
-2020-03-24T16:16:54.252Z        INFO    Need to update DB
-2020-03-24T16:16:54.252Z        INFO    Downloading DB...
-2020-03-24T16:16:58.721Z        INFO    Reopening DB...
-2020-03-24T16:17:02.667Z        INFO    Detecting Alpine vulnerabilities...
+docker run --rm -v /var/run/docker.sock:/var/run/docker.sock:ro aquasec/trivy:0.5.3 --no-progress secureimages/nexus3:3.22.0-alpine-3.11.5
+2020-03-28T13:47:49.053Z        INFO    Need to update DB
+2020-03-28T13:47:49.053Z        INFO    Downloading DB...
+2020-03-28T13:47:52.918Z        INFO    Reopening DB...
+2020-03-28T13:47:57.702Z        INFO    Detecting Alpine vulnerabilities...
 
-secureimages/nexus3:3.21.2-alpine-3.11.5 (alpine 3.11.5)
+secureimages/nexus3:3.22.0-alpine-3.11.5 (alpine 3.11.5)
 ========================================================
 Total: 0 (UNKNOWN: 0, LOW: 0, MEDIUM: 0, HIGH: 0, CRITICAL: 0)
 ```
@@ -32,30 +32,30 @@ Total: 0 (UNKNOWN: 0, LOW: 0, MEDIUM: 0, HIGH: 0, CRITICAL: 0)
 
 [https://hub.docker.com/r/sonatype/nexus3](https://hub.docker.com/r/sonatype/nexus3)
 ```
-docker pull sonatype/nexus3:3.21.2
+docker pull sonatype/nexus3:3.22.0
 ```
 
 Security scanning using Clair
 ```
-clair-scanner sonatype/nexus3:3.21.2
-2020/03/24 18:17:07 [INFO] ▶ Start clair-scanner
-2020/03/24 18:17:16 [INFO] ▶ Server listening on port 9279
-2020/03/24 18:17:16 [INFO] ▶ Analyzing f348effac8c4f3cc0836e0000bbf8f6ae64e3b23ceb7b0df9425b6fa51c3b451
-2020/03/24 18:17:18 [INFO] ▶ Analyzing 606689fc2b317258d8cd67911b0fef78fbc30cce6115f73335fd69755715c786
-2020/03/24 18:17:18 [INFO] ▶ Analyzing aa688411b12c9e832a1f49f66061006542c5c740d0985be393e2e713ea948324
-2020/03/24 18:17:18 [INFO] ▶ Analyzing b555bf4dadb996b1f6f068f905d50462182e21a32dad2483f24519d0cdc0b1b0
-2020/03/24 18:17:19 [INFO] ▶ Image [sonatype/nexus3:3.21.2] contains NO unapproved vulnerabilities
+clair-scanner sonatype/nexus3:3.22.0
+2020/03/28 15:48:02 [INFO] ▶ Start clair-scanner
+2020/03/28 15:48:11 [INFO] ▶ Server listening on port 9279
+2020/03/28 15:48:11 [INFO] ▶ Analyzing f348effac8c4f3cc0836e0000bbf8f6ae64e3b23ceb7b0df9425b6fa51c3b451
+2020/03/28 15:48:13 [INFO] ▶ Analyzing 606689fc2b317258d8cd67911b0fef78fbc30cce6115f73335fd69755715c786
+2020/03/28 15:48:13 [INFO] ▶ Analyzing c6bff4d249fcc3eb957253127c489599ebc07e8f8ca269bf2e8115e0b7967f66
+2020/03/28 15:48:13 [INFO] ▶ Analyzing abce40e1a55ef1d5078e5ebfa179da360ac297cad56b6b7ad15c6272e590a960
+2020/03/28 15:48:14 [INFO] ▶ Image [sonatype/nexus3:3.22.0] contains NO unapproved vulnerabilities
 ```
 
 Security scanning using Trivy
 ```
-docker run --rm -v /var/run/docker.sock:/var/run/docker.sock:ro aquasec/trivy:0.5.3 --no-progress sonatype/nexus3:3.21.2
-2020-03-24T16:17:44.833Z        INFO    Need to update DB
-2020-03-24T16:17:44.833Z        INFO    Downloading DB...
-2020-03-24T16:17:49.080Z        INFO    Reopening DB...
-2020-03-24T16:18:03.185Z        INFO    Detecting RHEL/CentOS vulnerabilities...
+docker run --rm -v /var/run/docker.sock:/var/run/docker.sock:ro aquasec/trivy:0.5.3 --no-progress sonatype/nexus3:3.22.0
+2020-03-28T13:48:20.350Z        INFO    Need to update DB
+2020-03-28T13:48:20.350Z        INFO    Downloading DB...
+2020-03-28T13:48:23.703Z        INFO    Reopening DB...
+2020-03-28T13:48:36.441Z        INFO    Detecting RHEL/CentOS vulnerabilities...
 
-sonatype/nexus3:3.21.2 (redhat 8.1)
+sonatype/nexus3:3.22.0 (redhat 8.1)
 ===================================
-Total: 183 (UNKNOWN: 0, LOW: 19, MEDIUM: 138, HIGH: 23, CRITICAL: 3)
+Total: 184 (UNKNOWN: 0, LOW: 19, MEDIUM: 139, HIGH: 23, CRITICAL: 3)
 ```
