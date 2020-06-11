@@ -1,10 +1,10 @@
-FROM alpine:3.11.6
+FROM alpine:3.12.0
 LABEL website="Secure Docker Images https://secureimages.dev"
 LABEL description="We secure your business from scratch."
 LABEL maintainer="hireus@secureimages.dev"
 
-ARG NEXUS_VERSION=3.23.0-03
-ARG NEXUS_CHECKSUM=673492fc4f281df31c4f023aac1cc0e423ded6703b5a9c6a2b455265312ee8cb
+ARG NEXUS_VERSION=3.24.0-02
+ARG NEXUS_CHECKSUM=a2bfbc602228adeeb1a932e6e79bebea0ca2a9c1e7c86dfeeb3898aebf31f70c
 ARG CONTAINER_UID=2001
 ARG CONTAINER_GID=2001
 ARG CONTAINER_USER=nexus
