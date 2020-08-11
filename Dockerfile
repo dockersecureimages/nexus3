@@ -3,8 +3,8 @@ LABEL website="Secure Docker Images https://secureimages.dev"
 LABEL description="We secure your business from scratch."
 LABEL maintainer="hireus@secureimages.dev"
 
-ARG NEXUS_VERSION=3.25.1-04
-ARG NEXUS_CHECKSUM=0bfd23958a1329bb3ed36cbe6fe15efd85f9ab2ed7a3235576c2eccc9173cf2e
+ARG NEXUS_VERSION=3.26.0-04
+ARG NEXUS_CHECKSUM=f2beae514d17dfdafc45419279c5e073bbae6b20957404fa8ae1b11e8ae31de1
 ARG CONTAINER_UID=2001
 ARG CONTAINER_GID=2001
 ARG CONTAINER_USER=nexus
@@ -20,7 +20,7 @@ ENV JAVA_HOME=/usr/lib/jvm/java-1.8-openjdk \
     PATH=${PATH}:/usr/lib/jvm/java-1.8-openjdk/bin \
     JAVA_TOOL_OPTIONS="-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap" \
     GLIBC_REPO=https://github.com/sgerrand/alpine-pkg-glibc \
-    GLIBC_VERSION=2.31-r0
+    GLIBC_VERSION=2.32-r0
 
 RUN set -ex ;\
     apk add libstdc++ curl ca-certificates bash ;\
