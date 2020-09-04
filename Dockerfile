@@ -3,8 +3,8 @@ LABEL website="Secure Docker Images https://secureimages.dev"
 LABEL description="We secure your business from scratch."
 LABEL maintainer="hireus@secureimages.dev"
 
-ARG NEXUS_VERSION=3.26.0-04
-ARG NEXUS_CHECKSUM=f2beae514d17dfdafc45419279c5e073bbae6b20957404fa8ae1b11e8ae31de1
+ARG NEXUS_VERSION=3.27.0-03
+ARG NEXUS_CHECKSUM=ba90c2ea1d4f74acb89917d09744a97e97c1377301ec7aaed7f1ea75412735c0
 ARG CONTAINER_UID=2001
 ARG CONTAINER_GID=2001
 ARG CONTAINER_USER=nexus
