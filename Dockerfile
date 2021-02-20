@@ -1,10 +1,10 @@
-FROM alpine:3.12.1
+FROM alpine:3.13.2
 LABEL website="Secure Docker Images https://secureimages.dev"
 LABEL description="We secure your business from scratch."
-LABEL maintainer="hireus@secureimages.dev"
+LABEL maintainer="support@secureimages.dev"
 
-ARG NEXUS_VERSION=3.28.1-01
-ARG NEXUS_CHECKSUM=c87bbcedf6503e3776afede9903236ab7d8f68c31e8f1edf060e16f415166a61
+ARG NEXUS_VERSION=3.29.2-02
+ARG NEXUS_CHECKSUM=bc7cbb577db195868f25d73ca22de3f7cc1e39d7384794bae03c28f5823ca3a7
 ARG CONTAINER_UID=2001
 ARG CONTAINER_GID=2001
 ARG CONTAINER_USER=nexus
@@ -22,31 +22,31 @@ ENV JAVA_HOME=/usr/lib/jvm/java-1.8-openjdk \
     GLIBC_REPO=https://github.com/sgerrand/alpine-pkg-glibc \
     GLIBC_VERSION=2.32-r0
 
-RUN set -ex ;\
-    apk add libstdc++ curl ca-certificates bash ;\
-    wget -q https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub -O /etc/apk/keys/sgerrand.rsa.pub ;\
-    for pkg in glibc-${GLIBC_VERSION} glibc-bin-${GLIBC_VERSION} glibc-i18n-${GLIBC_VERSION}; do curl -sSL ${GLIBC_REPO}/releases/download/${GLIBC_VERSION}/${pkg}.apk -o /tmp/${pkg}.apk; done ;\
-    apk add /tmp/*.apk ;\
-    rm -v /tmp/*.apk ;\
-    ( /usr/glibc-compat/bin/localedef --force --inputfile POSIX --charmap UTF-8 C.UTF-8 || true ) ;\
-    echo "export LANG=C.UTF-8" > /etc/profile.d/locale.sh ;\
-    /usr/glibc-compat/sbin/ldconfig /lib /usr/glibc-compat/lib ;\
-    apk add --no-cache openjdk8-jre ;\
-    java -version ;\
-    sed -i s/#networkaddress.cache.ttl=-1/networkaddress.cache.ttl=10/ $JAVA_HOME/jre/lib/security/java.security ;\
-    echo 'hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4' >> /etc/nsswitch.conf ;\
-    apk del curl glibc-i18n ;\
+RUN set -ex &&\
+    apk add libstdc++ curl ca-certificates bash &&\
+    wget -q https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub -O /etc/apk/keys/sgerrand.rsa.pub &&\
+    for pkg in glibc-${GLIBC_VERSION} glibc-bin-${GLIBC_VERSION} glibc-i18n-${GLIBC_VERSION}; do curl -sSL ${GLIBC_REPO}/releases/download/${GLIBC_VERSION}/${pkg}.apk -o /tmp/${pkg}.apk; done &&\
+    apk add /tmp/*.apk &&\
+    rm -v /tmp/*.apk &&\
+    ( /usr/glibc-compat/bin/localedef --force --inputfile POSIX --charmap UTF-8 C.UTF-8 || true ) &&\
+    echo "export LANG=C.UTF-8" > /etc/profile.d/locale.sh &&\
+    /usr/glibc-compat/sbin/ldconfig /lib /usr/glibc-compat/lib &&\
+    apk add --no-cache openjdk8-jre &&\
+    java -version &&\
+    sed -i s/#networkaddress.cache.ttl=-1/networkaddress.cache.ttl=10/ $JAVA_HOME/jre/lib/security/java.security &&\
+    echo 'hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4' >> /etc/nsswitch.conf &&\
+    apk del curl glibc-i18n &&\
     rm -rf /tmp/* /var/cache/apk/*
 
 RUN set -ex ;\
-    addgroup -g ${CONTAINER_GID} ${CONTAINER_GROUP} ;\
-    adduser -u ${CONTAINER_UID} -G ${CONTAINER_GROUP} -h /home/${CONTAINER_USER} -s /bin/bash -S ${CONTAINER_USER} ;\
-    mkdir -p /opt/sonatype/nexus /opt/sonatype/sonatype-work/nexus3 ;\
-    ln -s /opt/sonatype/sonatype-work/nexus3 /nexus-data ;\
-    chown -R nexus:nexus /opt/sonatype /nexus-data ;\
-    wget -P /tmp https://download.sonatype.com/nexus/3/nexus-${NEXUS_VERSION}-unix.tar.gz ;\
-    echo "${NEXUS_CHECKSUM}  /tmp/nexus-${NEXUS_VERSION}-unix.tar.gz" | sha256sum -c - ;\
-    tar -xvzf /tmp/nexus-${NEXUS_VERSION}-unix.tar.gz --strip-components=1 -C /opt/sonatype/nexus ;\
+    addgroup -g ${CONTAINER_GID} ${CONTAINER_GROUP} &&\
+    adduser -u ${CONTAINER_UID} -G ${CONTAINER_GROUP} -h /home/${CONTAINER_USER} -s /bin/bash -S ${CONTAINER_USER} &&\
+    mkdir -p /opt/sonatype/nexus /opt/sonatype/sonatype-work/nexus3 &&\
+    ln -s /opt/sonatype/sonatype-work/nexus3 /nexus-data &&\
+    chown -R nexus:nexus /opt/sonatype /nexus-data &&\
+    wget -P /tmp https://download.sonatype.com/nexus/3/nexus-${NEXUS_VERSION}-unix.tar.gz &&\
+    echo "${NEXUS_CHECKSUM}  /tmp/nexus-${NEXUS_VERSION}-unix.tar.gz" | sha256sum -c - &&\
+    tar -xvzf /tmp/nexus-${NEXUS_VERSION}-unix.tar.gz --strip-components=1 -C /opt/sonatype/nexus &&\
     rm -rf /tmp/*
 
 USER nexus
